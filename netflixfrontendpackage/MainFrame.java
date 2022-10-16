@@ -1,25 +1,22 @@
-// Cameron Holbrook
-// CSCI 3381
-
 package netflixfrontendpackage;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import netflixbackendpackage.ShowCollection;
-import netflixbackendpackage.ShowInWeek;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 
 public class MainFrame {
-
 	public static void main(String[] args) {
-
-		JFrame frame = new JFrame("Rebound");
+		JFrame frame = new JFrame("Push Counter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image icon = Toolkit.getDefaultToolkit().getImage("./images/netflixIcon.png");
+		frame.setIconImage(icon);
 		
-		frame.setSize(800, 500);
-		frame.getContentPane().add(new MainPanel());
+		MainPanel panel = new MainPanel();
+		frame.getContentPane().add(panel);
+		
 		frame.pack();
 		frame.setVisible(true);
 		
 	}
 }
+

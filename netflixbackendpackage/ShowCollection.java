@@ -22,7 +22,8 @@ public class ShowCollection {
 	private ArrayList<ShowInWeek> showStorage = new ArrayList<ShowInWeek>();
 	private String readFileName;
 	private String writeFileName;
-
+	private Random random;
+	
 	// Arguments: None
 	// Return: None
 	public ShowCollection() {
@@ -66,7 +67,7 @@ public class ShowCollection {
 	public String suggestRandomShow() {
 
 		// Generate a number the size of the ShowCollection instance.
-		Random random = new Random();
+		random = new Random();
 
 		// Then, get the length of the ShowCollection.
 		// With this length, get a random number with a maximum of the ShowCollection length.
@@ -182,17 +183,37 @@ public class ShowCollection {
 		return categoryList;			// Need to return a ShowCollection (this is an ArrayList).
 	}
 
+	// TESTING
+	
+	// Arguments: String
+	// Return: ArrayList<ShowInWeek>
+	public String getShowsString(String week) {
+
+		// Create an ArrayList that holds shows of specified week.
+		String categoryList = "";		
+
+		// Cycle through the whole data; get the ShowInWeek objects that have the specified week.
+		for (ShowInWeek showInWeek : showStorage) {
+			if (showInWeek.getWeek().equals(week)){
+				categoryList += showInWeek + "\n";
+			}
+		}
+
+		return categoryList;			// Need to return a ShowCollection (this is an ArrayList).
+	}
+
+	// TESTING
+	
 	// Arguments: None
 	// Return: String
 	public String toString() {
 
-		String toReturn = "ShowCollection: [\n";
+		String toReturn = "";
 
 		for (ShowInWeek showInWeek : showStorage) {
 			toReturn += showInWeek.toString();
 		}
 
-		toReturn += "]";
 		return toReturn;
 	}
 
