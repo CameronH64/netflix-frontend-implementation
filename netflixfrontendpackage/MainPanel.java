@@ -110,8 +110,8 @@ public class MainPanel extends JPanel{
 		scrollPaneCompleteData.setBounds(581, 119, 230, 287);
 		add(scrollPaneCompleteData);
 		
-		String username = JOptionPane.showInputDialog("Please enter your Netflix username: ");
-		labelWelcomeUser.setText("Welcome User: " + username);
+//		String username = JOptionPane.showInputDialog("Please enter your Netflix username: ");
+//		labelWelcomeUser.setText("Welcome User: " + username);
 		
 		JTextArea textAreaDisplayCompleteData = new JTextArea();
 		scrollPaneCompleteData.setViewportView(textAreaDisplayCompleteData);
@@ -273,9 +273,16 @@ public class MainPanel extends JPanel{
 		textFieldCumulativeWeeksTop10.setBounds(30, 386, 230, 20);
 		add(textFieldCumulativeWeeksTop10);
 		
-		JButton btnSaveData = new JButton("Save Data");
-		btnSaveData.setBounds(581, 419, 230, 23);
-		add(btnSaveData);
+		JButton buttonSaveData = new JButton("Save Data");
+		buttonSaveData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				completeShowCollection.writeFile();
+				
+			}
+		});
+		buttonSaveData.setBounds(581, 419, 230, 23);
+		add(buttonSaveData);
 		
 	}
 }
