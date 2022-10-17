@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,13 +26,21 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class MainPanel extends JPanel{
 	
 	private int count;
-	private JTextField textboxShowWeek;
+	private JTextField textboxEnterShowWeek;
 	private ShowCollection completeShowCollection;
+	private JTextField textFieldWeek;
+	private JTextField textFieldCategory;
+	private JTextField textFieldWeeklyRank;
+	private JTextField textFieldShowTitle;
+	private JTextField textFieldSeasonTitle;
+	private JTextField textFieldWeeklyHoursViewed;
+	private JTextField textFieldCumulativeWeeksTop10;
 	
 	public MainPanel() {
 		
@@ -48,107 +57,225 @@ public class MainPanel extends JPanel{
 		
 		// Set some panel settings.
 		setBackground(Color.LIGHT_GRAY);
-		setPreferredSize(new Dimension(860, 600));
+		setPreferredSize(new Dimension(850, 500));
 		
 		JLabel labelSuggestRandomShow = new JLabel("Suggest Random Show:");
-		labelSuggestRandomShow.setBounds(30, 74, 230, 14);
+		labelSuggestRandomShow.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelSuggestRandomShow.setBounds(303, 73, 230, 23);
 		add(labelSuggestRandomShow);
 		
 		JLabel labelRandomShow = new JLabel("Random Show:");
-		labelRandomShow.setBounds(30, 129, 230, 14);
+		labelRandomShow.setBounds(303, 155, 230, 14);
 		add(labelRandomShow);
 
-		JLabel labelRandomShowDisplay = new JLabel("---");
-		labelRandomShowDisplay.setBounds(30, 154, 230, 14);
-		add(labelRandomShowDisplay);
+		JLabel labelDisplayRandomShow = new JLabel("---");
+		labelDisplayRandomShow.setBounds(303, 180, 230, 14);
+		add(labelDisplayRandomShow);
 		
 		
 		JButton buttonFeelingLucky = new JButton("Feeling Lucky?");
 		buttonFeelingLucky.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				labelRandomShowDisplay.setText(completeShowCollection.suggestRandomShow());
+				labelDisplayRandomShow.setText(completeShowCollection.suggestRandomShow());
 				
 			}
 		});
-		buttonFeelingLucky.setBounds(30, 95, 230, 23);
+		buttonFeelingLucky.setBounds(303, 121, 230, 23);
 		add(buttonFeelingLucky);
 		
-		textboxShowWeek = new JTextField();
-		textboxShowWeek.setText("2022-09-04");
-		textboxShowWeek.setBounds(30, 235, 230, 20);
-		add(textboxShowWeek);
-		textboxShowWeek.setColumns(10);
+		textboxEnterShowWeek = new JTextField();
+		textboxEnterShowWeek.setText("2021-07-04");
+		textboxEnterShowWeek.setBounds(303, 322, 230, 20);
+		add(textboxEnterShowWeek);
+		textboxEnterShowWeek.setColumns(10);
 		
-		JButton buttonGetShows = new JButton("Get Shows");
-		buttonGetShows.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				textboxShowWeek.getText();
-				
-			}
-		});
-		buttonGetShows.setBounds(30, 266, 230, 23);
-		add(buttonGetShows);
 		
-		JLabel labelGetShowWeek = new JLabel("Get Show Week:");
-		labelGetShowWeek.setBounds(30, 214, 230, 14);
+		
+		JLabel labelGetShowWeek = new JLabel("Enter Week:");
+		labelGetShowWeek.setBounds(303, 301, 230, 14);
 		add(labelGetShowWeek);
 		
-		JScrollPane scrollPaneWeeklyRank = new JScrollPane();
-		scrollPaneWeeklyRank.setBounds(322, 193, 230, 367);
-		add(scrollPaneWeeklyRank);
-		
-		JTextArea textAreaDisplayWeeklyRankShows = new JTextArea();
-		scrollPaneWeeklyRank.setViewportView(textAreaDisplayWeeklyRankShows);
-
-		
-		JSlider sliderWeeklyRank = new JSlider();
-		sliderWeeklyRank.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				
-				
-				
-			}
-		});
-		sliderWeeklyRank.setSnapToTicks(true);
-		sliderWeeklyRank.setMinimum(1);
-		sliderWeeklyRank.setPaintLabels(true);
-		sliderWeeklyRank.setPaintTicks(true);
-		sliderWeeklyRank.setMajorTickSpacing(1);
-		sliderWeeklyRank.setMaximum(10);
-		sliderWeeklyRank.setBounds(322, 95, 230, 45);
-		add(sliderWeeklyRank);
-		
-		JLabel labelSelectShowsByWeeklyRank = new JLabel("Select Shows by Weekly Rank");
-		labelSelectShowsByWeeklyRank.setBounds(322, 70, 230, 14);
-		add(labelSelectShowsByWeeklyRank);
-		
-		JLabel labelDisplayShowsOfWeeklyRank = new JLabel("Shows of Weekly Rank:");
-		labelDisplayShowsOfWeeklyRank.setBounds(322, 168, 230, 14);
-		add(labelDisplayShowsOfWeeklyRank);
-		
-		JLabel labelCompleteData = new JLabel("Complete Data");
-		labelCompleteData.setBounds(581, 168, 230, 14);
+		JLabel labelCompleteData = new JLabel("Complete Data:");
+		labelCompleteData.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelCompleteData.setBounds(581, 70, 230, 28);
 		add(labelCompleteData);
 		
-		JLabel labelWelcomeUser = new JLabel("Welcome User: ");
+		JLabel labelWelcomeUser = new JLabel("Welcome Netflix User: ");
 		labelWelcomeUser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		labelWelcomeUser.setBounds(30, 28, 230, 18);
 		add(labelWelcomeUser);
 		
 		JScrollPane scrollPaneCompleteData = new JScrollPane();
-		scrollPaneCompleteData.setBounds(581, 193, 230, 367);
+		scrollPaneCompleteData.setBounds(581, 119, 230, 287);
 		add(scrollPaneCompleteData);
 		
-//		String username = JOptionPane.showInputDialog("Please enter your username: ");
-//		labelWelcomeUser.setText("Welcome User: " + username);
+		String username = JOptionPane.showInputDialog("Please enter your Netflix username: ");
+		labelWelcomeUser.setText("Welcome User: " + username);
 		
 		JTextArea textAreaDisplayCompleteData = new JTextArea();
 		scrollPaneCompleteData.setViewportView(textAreaDisplayCompleteData);
 		textAreaDisplayCompleteData.setText(completeShowCollection.toString());
 		
+		JComboBox comboBoxMovies = new JComboBox();
+		ArrayList<ShowInWeek> moviesInWeek = completeShowCollection.getShows("2021-07-04");
+		String[] stringAllData = new String[moviesInWeek.size()];
+		int index = 0;
+		for (ShowInWeek show : moviesInWeek) {
+			stringAllData[index] = show.getShowTitles();
+			index++;
+		}
+		comboBoxMovies.setModel(new DefaultComboBoxModel(stringAllData)); 		// Constructor is a new array of strings.
+		comboBoxMovies.setBounds(303, 417, 230, 22);
+		add(comboBoxMovies);
 		
+		JButton buttonGetShows = new JButton("Get Shows");
+		buttonGetShows.setBounds(303, 353, 230, 23);
+		add(buttonGetShows);
+
+		buttonGetShows.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<ShowInWeek> moviesInWeek = completeShowCollection.getShows(textboxEnterShowWeek.getText());
+				if(moviesInWeek != null && moviesInWeek.size() > 0) {
+					
+					String[] stringAllData = new String[moviesInWeek.size()];
+					int index = 0;
+					for (ShowInWeek show : moviesInWeek) {
+						stringAllData[index] = show.getShowTitles();
+						index++;
+					}
+					comboBoxMovies.setModel(new DefaultComboBoxModel(stringAllData)); 		// Constructor is a new array of strings.
+					
+				}
+				
+			}
+		});
+		
+		JLabel labelShows = new JLabel("Shows:");
+		labelShows.setBounds(303, 392, 230, 14);
+		add(labelShows);
+		
+		JLabel labelClosingNote = new JLabel("Note: Any and all changes to data will be saved upon application close.");
+		labelClosingNote.setBounds(248, 462, 419, 14);
+		add(labelClosingNote);
+		
+		JButton buttonAddShow = new JButton("Add Show");
+		buttonAddShow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Create a new ShowInWeek object.
+				ShowInWeek newShow = new ShowInWeek();
+				
+				// Get all the text from the 7 text boxes
+				// Parse the two ints.
+				String week = textFieldWeek.getText();
+				String category = textFieldCategory.getText();
+				int weeklyRank = Integer.parseInt(textFieldWeeklyRank.getText());
+				String showTitle = textFieldShowTitle.getText();
+				String seasonTitle = textFieldSeasonTitle.getText();
+				int weeklyHoursViewed = Integer.parseInt(textFieldWeeklyHoursViewed.getText());
+				int cumulativeWeeksTop10 = Integer.parseInt(textFieldCumulativeWeeksTop10.getText());
+				
+				// Create new ShowInWeek using that text.
+				newShow.setWeek(week);
+				newShow.setCategory(category);
+				newShow.setWeeklyRank(weeklyRank);
+				newShow.setShowTitles(showTitle);
+				newShow.setSeasonTitle(seasonTitle);
+				newShow.setWeeklyHoursViewed(weeklyHoursViewed);
+				newShow.setCumulativeWeeksTop10(cumulativeWeeksTop10);
+				
+				// Add the ShowInWeek to the completeShowCollection.
+				completeShowCollection.addNewShow(newShow);
+				
+				// Update the complete data textbox.
+				textAreaDisplayCompleteData.setText(completeShowCollection.toString());
+				
+			}
+		});
+		buttonAddShow.setBounds(30, 416, 230, 23);
+		add(buttonAddShow);
+		
+		JLabel labelWeek = new JLabel("Week:");
+		labelWeek.setBounds(30, 107, 230, 14);
+		add(labelWeek);
+		
+		JLabel lblAddNewShow = new JLabel("Add New Show:");
+		lblAddNewShow.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAddNewShow.setBounds(30, 73, 230, 23);
+		add(lblAddNewShow);
+		
+		JLabel labelGetShowFromWeek = new JLabel("Get Show From Week:");
+		labelGetShowFromWeek.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelGetShowFromWeek.setBounds(303, 266, 230, 28);
+		add(labelGetShowFromWeek);
+		
+		JLabel labelCategory = new JLabel("Category:");
+		labelCategory.setBounds(30, 152, 230, 14);
+		add(labelCategory);
+		
+		
+		
+		// Text fields for the addition of new show.
+		textFieldWeek = new JTextField();
+		textFieldWeek.setColumns(10);
+		textFieldWeek.setBounds(30, 121, 230, 20);
+		add(textFieldWeek);
+		
+		textFieldCategory = new JTextField();
+		textFieldCategory.setColumns(10);
+		textFieldCategory.setBounds(30, 166, 230, 20);
+		add(textFieldCategory);
+		
+		JLabel labelWeeklyRank = new JLabel("Weekly Rank:");
+		labelWeeklyRank.setBounds(30, 197, 230, 14);
+		add(labelWeeklyRank);
+		
+		textFieldWeeklyRank = new JTextField();
+		textFieldWeeklyRank.setColumns(10);
+		textFieldWeeklyRank.setBounds(30, 211, 230, 20);
+		add(textFieldWeeklyRank);
+		
+		JLabel labelShowTitle = new JLabel("Show Title:");
+		labelShowTitle.setBounds(30, 242, 230, 14);
+		add(labelShowTitle);
+		
+		textFieldShowTitle = new JTextField();
+		textFieldShowTitle.setColumns(10);
+		textFieldShowTitle.setBounds(30, 256, 230, 20);
+		add(textFieldShowTitle);
+		
+		JLabel labelSeasonTitle = new JLabel("Season Title:");
+		labelSeasonTitle.setBounds(30, 282, 230, 14);
+		add(labelSeasonTitle);
+		
+		textFieldSeasonTitle = new JTextField();
+		textFieldSeasonTitle.setColumns(10);
+		textFieldSeasonTitle.setBounds(30, 296, 230, 20);
+		add(textFieldSeasonTitle);
+		
+		JLabel labelWeeklyHoursViewed = new JLabel("Weekly Hours Viewed:");
+		labelWeeklyHoursViewed.setBounds(30, 327, 230, 14);
+		add(labelWeeklyHoursViewed);
+		
+		textFieldWeeklyHoursViewed = new JTextField();
+		textFieldWeeklyHoursViewed.setColumns(10);
+		textFieldWeeklyHoursViewed.setBounds(30, 341, 230, 20);
+		add(textFieldWeeklyHoursViewed);
+		
+		JLabel lblSetWeek_1_1_1 = new JLabel("Cumulative Weeks Top 10:");
+		lblSetWeek_1_1_1.setBounds(30, 372, 230, 14);
+		add(lblSetWeek_1_1_1);
+		
+		textFieldCumulativeWeeksTop10 = new JTextField();
+		textFieldCumulativeWeeksTop10.setColumns(10);
+		textFieldCumulativeWeeksTop10.setBounds(30, 386, 230, 20);
+		add(textFieldCumulativeWeeksTop10);
+		
+		JButton btnSaveData = new JButton("Save Data");
+		btnSaveData.setBounds(581, 419, 230, 23);
+		add(btnSaveData);
 		
 	}
 }

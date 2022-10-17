@@ -186,7 +186,7 @@ public class ShowCollection {
 	// TESTING
 	
 	// Arguments: String
-	// Return: ArrayList<ShowInWeek>
+	// Return: String
 	public String getShowsString(String week) {
 
 		// Create an ArrayList that holds shows of specified week.
