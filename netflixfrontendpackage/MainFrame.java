@@ -1,3 +1,6 @@
+// Cameron Holbrook
+// CSCI 3381
+
 package netflixfrontendpackage;
 
 import java.awt.Image;
@@ -6,13 +9,16 @@ import javax.swing.JFrame;
 
 public class MainFrame {
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Push Counter");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Image icon = Toolkit.getDefaultToolkit().getImage("./images/netflixIcon.png");
-		frame.setIconImage(icon);
 		
-		MainPanel panel = new MainPanel();
-		frame.getContentPane().add(panel);
+		// Create the frame that holds the panels.
+		JFrame frame = new JFrame("Netflix Playground");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Image netflixIcon = Toolkit.getDefaultToolkit().getImage("./images/netflixIcon.png");
+		frame.setIconImage(netflixIcon);
+		
+		// MainPanel contains both MainGUI and LoginPanel
+		MainPanel mainPanel = new MainPanel();
+		frame.getContentPane().add(mainPanel);
 		
 		frame.pack();
 		frame.setVisible(true);

@@ -28,8 +28,8 @@ public class ShowCollection {
 	// Return: None
 	public ShowCollection() {
 		showStorage = new ArrayList<ShowInWeek>();
-		readFileName = "./inputData.txt";
-		writeFileName = "./outputData.txt";
+		readFileName = "./completeDataSet.txt";
+		writeFileName = "./completeDataSet.txt";
 	}
 
 	// Arguments: ShowInWeek
@@ -182,27 +182,6 @@ public class ShowCollection {
 
 		return categoryList;			// Need to return a ShowCollection (this is an ArrayList).
 	}
-
-	// TESTING
-	
-	// Arguments: String
-	// Return: String
-	public String getShowsString(String week) {
-
-		// Create an ArrayList that holds shows of specified week.
-		String categoryList = "";		
-
-		// Cycle through the whole data; get the ShowInWeek objects that have the specified week.
-		for (ShowInWeek showInWeek : showStorage) {
-			if (showInWeek.getWeek().equals(week)){
-				categoryList += showInWeek + "\n";
-			}
-		}
-
-		return categoryList;			// Need to return a ShowCollection (this is an ArrayList).
-	}
-
-	// TESTING
 	
 	// Arguments: None
 	// Return: String

@@ -63,9 +63,9 @@ public class ShowInWeek {
 	// Arguments: None
 	// Return: String
 	public String toString() {
-		return "ShowInWeek [week=" + week + ", category=" + category + ", weeklyRank=" + weeklyRank + ", showTitles="
+		return week + ", category=" + category + ", weeklyRank=" + weeklyRank + ", showTitles="
 				+ showTitles + ", seasonTitle=" + seasonTitle + ", weeklyHoursViewed=" + weeklyHoursViewed
-				+ ", cumulativeWeeksTop10=" + cumulativeWeeksTop10 + "]\n";
+				+ ", cumulativeWeeksTop10=" + cumulativeWeeksTop10 + "\n";
 	}
 
 	// Arguments: ShowInWeek
